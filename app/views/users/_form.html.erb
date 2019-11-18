@@ -1,0 +1,50 @@
+<% if @user.errors.any? %>
+<div class="row">
+  <div class="large-12 columns">
+    <div data-alert class="alert-box alert radius">
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+      <a href="#" class="close">&times;</a>
+    </div>
+
+  </div>
+</div>
+<% end %>
+<div class="row">
+  <div class="large-12 columns">
+    <%= f.label :name, 'Full Name' %>
+    <%= f.text_field :name, :placeholder => 'Abe Lincoln' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <%= f.label :email %>
+    <%= f.email_field :email, :placeholder => 'abe@example.com' %>
+  </div>
+</div>
+
+<% unless f.object.new_record? %>
+<div class="row">
+  <div class="large-12 columns">
+    <%= f.label :password, 'Change Password' %>
+    <%= f.password_field :password, :placeholder => 'Enter to change your password' %>
+  </div>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="large-12 columns">
+    <fieldset>
+      <!-- <label>Receive weekly email reports?</label> -->
+      <ul class="inline-list">
+        <!-- <li><label><%= f.check_box :reports_daily %> Daily</label></li> -->
+        <li><label><%= f.check_box :reports_weekly %> Receive weekly email reports</label></li>
+        <!-- <li><label><%= f.check_box :reports_monthly %> Monthly</label></li> -->
+      </ul>
+    </fieldset>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="large-9 large-centered columns">
+    <div class="row">
+      <div class="large-8 columns">
+        <h2>Settings</h2>
+        <%= form_for @account do |f| %>
+          <% if @account.errors.any? %>
+          <div class="row">
+            <div class="large-12 columns">
+              <div data-alert class="alert-box alert radius">
+                <ul>
+                <% @account.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+                <a href="#" class="close">&times;</a>
+              </div>
+
+            </div>
+          </div>
+        <% end %>
+          <div class="row">
+            <div class="large-12 columns">
+              <%= f.label :company, 'Company Name' %>
+              <%= f.text_field :company, :placeholder => 'Initech' %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="large-12 columns">
+              <%= f.label :phone, 'Telephone number' %>
+              <%= f.text_field :phone, :placeholder => '(555) 314-1391' %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="large-12 columns">
+              <button class="button success radius">Update Settings</button>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="large-4 columns">
+        <h3>Users</h3>
+        <ul class="side-nav user-listing">
+        <% @account.users.order(:first_name).each do |user| %>
+          <li><%= image_tag avatar_url(user.email, 22), class: 'left' %> <%= link_to (user.admin.present? ? "#{user.name} <b>(Admin)</b>".html_safe : user.name) , edit_user_path(user) %></li>
+          <li class="divider"></li>
+        <% end %>
+        </ul>
+        <%= link_to "Add a User", new_user_path, class: 'button tiny radius' %>
+        <br><br>
+        <h3>Stripe Access</h3>
+        <% if @account.connected? %>
+        <p>Disconnecting Stripe will remove the connected account's data from Baremetrics. It will not affect any data within Stripe.</p>
+        <p><%= link_to 'Disconnect Stripe', disconnect_accounts_path, method: :delete, confirm: 'Are you sure you want to disconnect your Stripe account?', class: 'button small alert radius' %></p>
+        <% else %>
+        <p><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CLIENT_ID'] %>" class="stripe-connect"><span>Connect with Stripe</span></a></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

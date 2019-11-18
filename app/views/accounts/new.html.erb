@@ -1,0 +1,127 @@
+<% content_for :head do %>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript">Stripe.setPublishableKey('<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>');</script>
+<% end %>
+
+<div class="row">
+  <div class="small-6 small-centered columns">
+    <header class="page_header">
+      <h1 class="text-center">Create an Account</h1>
+    </header>
+    <%= form_for @account, html: {class: 'custom payment-form', autocomplete: 'on', novalidate: true} do |f| %>
+      <%= f.hidden_field :plan_id, :value => @plan.id %>
+
+      <div class="row">
+        <div class="large-12 columns">
+          <span class="message_placeholder"></span>
+        </div>
+      </div>
+      <% if @account.errors.any? %>
+      <div class="row">
+        <div class="large-12 columns">
+          <div data-alert class="alert-box alert radius">
+            <ul>
+            <% @account.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+            <a href="#" class="close">&times;</a>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    <%= f.fields_for :users do |user| %>
+    <%= user.hidden_field :admin, value: true %>
+    <%= user.hidden_field :reports_weekly, value: true %>
+      <div class="row">
+        <div class="large-12 columns">
+          <%= user.label :name, 'Full Name' %>
+          <%= user.text_field :name, :placeholder => 'Abe Lincoln' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-12 columns">
+          <%= user.label :email %>
+          <%= user.email_field :email, :placeholder => 'abe@example.com' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-12 columns">
+          <%= user.label :password %>
+          <%= user.password_field :password, :placeholder => 'Make it secure!' %>
+        </div>
+      </div>
+      <% end %>
+      <div class="row">
+        <div class="large-12 columns">
+          <%= f.label :company, 'Company Name' %>
+          <%= f.text_field :company, :placeholder => 'Initech' %>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="large-12 columns">
+          <%#= f.label :phone, 'Telephone number' %>
+          <%#= f.text_field :phone, :placeholder => '(555) 314-1391' %>
+        </div>
+      </div> -->
+
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="reminder">
+            <div class="seal"></div>
+            <div class="info">
+              <p>Remember, you have a <b>60-day money back guarantee</b>. Don't like getting tons of useful business data? No worries. Contact us within 60 days and we'll refund your money and even stay friends.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-12 column">
+          <div class="card_number">
+            <%= f.label :card_number, "Card number" %>
+            <span class="card_listing">
+              <b class="credit-card visa"></b><b class="credit-card mastercard"></b><b class="credit-card amex"></b><b class="credit-card discover"></b>
+            </span>
+            <input type="text" size="20" data-stripe="number" class="cc-number" pattern="\d*" autocompletetype="cc-number" required>
+            <%#= text_field_tag :card_number, params[:card_number], 'data-stripe' => "number" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-3 column">
+          <div class="cvv">
+            <%= f.label :cvv, "CVV" %>
+            <input type="text" size="4" data-stripe="cvc" class="cc-cvc" autocomplete="off">
+            <%#= text_field_tag :cvv, params[:cvv], 'data-stripe' => "cvc" %>
+          </div>
+        </div>
+        <div class="large-9 column">
+          <div class="expiration">
+            <div class="row">
+              <div class="large-6 column">
+                <%= f.label :expiration_month, "Expiration" %>
+                <%= select_month Date.today, {:add_month_numbers => true}, {:name => nil, 'data-stripe' => "exp-month"} %>
+              </div>
+              <div class="large-6 column">
+                <%= label_tag :expiration_year, '&nbsp;'.html_safe %>
+                <%= select_year Date.today, {:start_year => Date.today.year, :end_year => Date.today.year + 15}, {:name => nil, 'data-stripe' => "exp-year"} %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-12 columns text-center"><br>
+          <button class="button success radius expand">Sign up now: <%= number_to_currency(@plan.price, precision: 0) %> per month</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

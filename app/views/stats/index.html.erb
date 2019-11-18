@@ -1,0 +1,436 @@
+<div class="row full-width">
+  <div class="large-12 columns">
+    <% if !current_user.account.connected? %>
+    <div class="row">
+      <div class="small-12 large-6 small-centered columns text-center">
+        <div class="widget radius">
+          <div class="content">
+            <h3>Before we can get the party started, we need to connect your Stripe account!</h3>
+            <p><a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CLIENT_ID'] %>" class="stripe-connect"><span>Connect with Stripe</span></a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% elsif current_user.account.stripe_connected_at.present? and (current_user.account.stripe_connected_at > Time.now - 3.minutes or current_user.account.importing?) %>
+    <div class="row">
+      <div class="small-12 large-6 small-centered columns text-center">
+        <div class="widget radius">
+          <div class="content">
+            <div class="loading"></div>
+            <h3>Loaderating your data</h3>
+            <p>It'll take a little while to process all that tasty data depending on how many customers you have (up to a couple of hours), so hang tight. Feel free to refresh the page at will.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% elsif current_user.account.connected? %>
+    <div class="row">
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Total sales (before refunds & fees)"><i class="ss-info"></i></span>
+            <h6>Total Volume</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/total_volume/account-#{current_account.id}-#{account_stats_count}") do %>
+              <% if current_user.account.stats.total_gross_revenue > 0 %>
+              <p class="main_metric"><%= number_to_currency(current_user.account.stats.total_gross_revenue, precision: 2) %></p>
+              <div id="canvas_gross_rev" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.gross_revenue(5.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.gross_revenue(4.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.gross_revenue(3.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.gross_revenue(2.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.gross_revenue(1.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.gross_revenue, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+              <% else %>
+              <div class="loading"></div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Total Volume - Refunds - Fees"><i class="ss-info"></i></span>
+            <h6>Net Revenue</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/net_revenue/account-#{current_account.id}-#{account_stats_count}") do %>
+              <% if current_user.account.stats.total_net_revenue > 0 %>
+              <p class="main_metric"><%= number_to_currency(current_user.account.stats.total_net_revenue, precision: 2) %></p>
+              <div id="canvas_net_rev" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.net_revenue(5.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.net_revenue(4.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.net_revenue(3.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.net_revenue(2.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.net_revenue(1.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.net_revenue, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+              <% else %>
+              <div class="loading"></div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <div class="right">
+              <i data-tooltip data-width="150px" class="has-tip tip-left ss-info" title="All fees collected by Stripe"></i>
+            </div>
+            <h6>Total Fees</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/total_fees/account-#{current_account.id}-#{account_stats_count}") do %>
+              <% if current_user.account.stats.total_fees > 0 %>
+              <p class="main_metric"><%= number_to_currency(current_user.account.stats.total_fees, precision: 2) %></p>
+              <div id="canvas_fees" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.fees(5.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.fees(4.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.fees(3.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.fees(2.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.fees(1.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.fees, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+              <% else %>
+              <div class="loading"></div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Accounts charged each month"><i class="ss-info"></i></span>
+            <h6>Active Accounts</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/active_accounts/account-#{current_account.id}-#{account_stats_count}") do %>
+              <% if current_user.account.stats.active_accounts(1.month).present? %>
+              <div class="numbers">
+                <p class="main_metric left"><%= current_user.account.stats.active_accounts(1.month) if current_user.account.stats.active_accounts(1.month).present? %></p>
+                <div class="projections right">
+                  <p><b>Projections</b></p>
+                  <ul>
+                    <li>Month: <b><%= number_with_precision(current_user.account.stats.projection(current_user.account.stats.active_accounts(1.month), current_user.account.stats.customer_growth_rate_average), precision: 0)  %></b></li>
+                    <li>3 Month: <b><%= number_with_precision(current_user.account.stats.projection(current_user.account.stats.active_accounts(1.month), current_user.account.stats.customer_growth_rate_average, 3), precision: 0)  %></b></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div id="canvas_active_accounts" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.active_accounts(5.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.active_accounts(4.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.active_accounts(3.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.active_accounts(2.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.active_accounts(1.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.active_accounts, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+              <% else %>
+              <div class="loading"></div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+              <span data-tooltip class="has-tip right" title="(Average daily billed amount ÷ # of Active accounts x 30 days) x (100 ÷ Churn Rate)"><i class="ss-info"></i></span>
+            <h6>Lifetime Value</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/ltv/account-#{current_account.id}-#{account_stats_count}") do %>
+              <% if current_user.account.stats.ltv_rolling > 0 %>
+              <p class="main_metric">
+                <%= number_to_currency(current_user.account.stats.ltv_rolling, precision: 0) %> <!-- (<%= number_to_currency(current_user.account.stats.ltv(2.months), precision: 0) %> in August) -->
+              </p>
+              <div id="canvas_ltv" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.ltv(5.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.ltv(4.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.ltv(3.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.ltv(2.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.ltv(1.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.ltv, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+              <% else %>
+              <div class="loading"></div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <div class="right">
+              <i data-tooltip data-width="250px" class="has-tip tip-left ss-info" title="Cancelled Accounts / Active Accounts * 100"></i>
+            </div>
+            <h6>Churn</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/churn/account-#{current_account.id}-#{account_stats_count}") do %>
+              <% if current_user.account.stats.churn_rate_avg > 0 %>
+              <p class="main_metric"><%= number_to_percentage(current_user.account.stats.churn_rate_avg, precision: 2) %></p>
+              <div id="canvas_churn" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.churn_rate(5.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.churn_rate(4.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.churn_rate(3.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.churn_rate(2.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.churn_rate(1.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.churn_rate, precision: 2) %>]" data-labels="<%= previous_months %>"></div>
+              <% else %>
+              <div class="loading"></div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Monthly revenue / # of days in month"><i class="ss-info"></i></span>
+            <h6>Average Daily Amount Billed</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/avg_daily_billed/account-#{current_account.id}-#{account_stats_count}") do %>
+            <p class="main_metric"><%= number_to_currency(current_user.account.stats.avg_daily_billed(1.month), precision: 0) if current_user.account.stats.avg_daily_billed %></p>
+            <div id="canvas_avg_daily_amount" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.avg_daily_billed(5.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.avg_daily_billed(4.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.avg_daily_billed(3.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.avg_daily_billed(2.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.avg_daily_billed(1.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.avg_daily_billed, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Accounts that cancelled their subscription or downgraded to a free plan"><i class="ss-info"></i></span>
+            <h6>Cancelled Accounts</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/cancelled_accounts/account-#{current_account.id}-#{account_stats_count}") do %>
+              <% if current_user.account.stats.cancelled_accounts.present? %>
+              <p class="main_metric"><%= current_user.account.stats.cancelled_accounts_total if current_user.account.stats.cancelled_accounts_total.present? %></p>
+              <div id="canvas_cancelled_accounts" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.cancelled_accounts(5.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.cancelled_accounts(4.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.cancelled_accounts(3.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.cancelled_accounts(2.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.cancelled_accounts(1.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.cancelled_accounts, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+              <% else %>
+              <div class="loading"></div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <div class="right">
+              <i data-tooltip data-width="170px" class="has-tip tip-left ss-info" title="Average daily billed amount x 365 days"></i>
+            </div>
+            <h6>Annual Run Rate</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/annual_run_rate/account-#{current_account.id}-#{account_stats_count}") do %>
+            <p class="main_metric"><%= number_to_currency(current_user.account.stats.avg_daily_billed(1.month) * 365, precision: 0) if current_user.account.stats.avg_daily_billed(1.month).present? %></p>
+            <div id="canvas_run_rate" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.avg_daily_billed(5.months) * 365, precision: 0) %>,<%= number_with_precision(current_user.account.stats.avg_daily_billed(4.months) * 365, precision: 0) %>,<%= number_with_precision(current_user.account.stats.avg_daily_billed(3.months) * 365, precision: 0) %>,<%= number_with_precision(current_user.account.stats.avg_daily_billed(2.months) * 365, precision: 0) %>,<%= number_with_precision(current_user.account.stats.avg_daily_billed(1.months) * 365, precision: 0) %>,<%= number_with_precision(current_user.account.stats.avg_daily_billed * 365, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <time></time>
+            <h6>Refunds</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/refunds/account-#{current_account.id}-#{account_stats_count}") do %>
+            <% if current_user.account.stats.total_refunds > 0 %>
+            <p class="main_metric"><%= number_to_currency(current_user.account.stats.total_refunds, precision: 0) if current_user.account.stats.total_refunds.present? %></p>
+            <div id="canvas_refunds" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.refunds(5.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.refunds(4.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.refunds(3.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.refunds(2.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.refunds(1.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.refunds, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+            <% else %>
+            <div class="loading"></div>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <time></time>
+            <h6>Monthly Recurring Revenue (3 Month Avg)</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/mrr_3_month_avg/account-#{current_account.id}-#{account_stats_count}") do %>
+            <% if current_user.account.stats.mrr_average > 0 %>
+            <div class="numbers">
+              <p class="main_metric left"><%= number_to_currency(current_user.account.stats.mrr_average, precision: 0) if current_user.account.stats.mrr_average.present? %></p>
+              <div class="projections right">
+                <p><b>Projections</b></p>
+                <ul>
+                  <li>Month: <b><%= number_to_currency(current_user.account.stats.projection(current_user.account.stats.mrr_average, current_user.account.stats.revenue_growth_rate_average), precision: 0)  %></b></li>
+                  <li>3 Month: <b><%= number_to_currency(current_user.account.stats.projection(current_user.account.stats.mrr_average, current_user.account.stats.revenue_growth_rate_average, 3), precision: 0)  %></b></li>
+                </ul>
+              </div>
+            </div>
+            <div id="canvas_mrr" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.mrr(5.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.mrr(4.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.mrr(3.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.mrr(2.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.mrr(1.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.mrr, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+            <% else %>
+            <div class="loading"></div>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <div class="right">
+              <i data-tooltip data-width="140px" class="has-tip tip-left ss-info" title="MRR / Active Accounts"></i>
+            </div>
+            <h6>Average Revenue Per User</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/arpu/account-#{current_account.id}-#{account_stats_count}") do %>
+            <% if current_user.account.stats.arpu > 0 %>
+            <div class="numbers">
+              <p class="main_metric left"><%= number_to_currency(current_user.account.stats.arpu, precision: 0) if current_user.account.stats.arpu.present? %></p>
+              <div class="projections right">
+                <p><b>Projections</b></p>
+                <ul>
+                  <li>Month: <b><%= number_to_currency(current_user.account.stats.projection(current_user.account.stats.arpu, current_user.account.stats.arpu_growth_rate_average), precision: 0)  %></b></li>
+                  <li>3 Month: <b><%= number_to_currency(current_user.account.stats.projection(current_user.account.stats.arpu, current_user.account.stats.arpu_growth_rate_average, 3), precision: 0)  %></b></li>
+                </ul>
+              </div>
+            </div>
+
+            <div id="canvas_arpu" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.arpu(5.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.arpu(4.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.arpu(3.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.arpu(2.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.arpu(1.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.arpu, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+            <% else %>
+            <div class="loading"></div>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <h6>Revenue Growth Rate (3 month avg)</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/rev_growth_rate_3_month_avg/account-#{current_account.id}-#{account_stats_count}") do %>
+            <% if current_user.account.stats.revenue_growth_rate_average > 0 %>
+            <p class="main_metric"><%= number_to_percentage(current_user.account.stats.revenue_growth_rate_average, precision: 2) %></p>
+            <div id="canvas_revenue_growth_rate" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.revenue_growth_rate(5.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.revenue_growth_rate(4.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.revenue_growth_rate(3.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.revenue_growth_rate(2.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.revenue_growth_rate(1.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.revenue_growth_rate, precision: 2) %>]" data-labels="<%= previous_months %>"></div>
+            <% else %>
+            <div class="loading"></div>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <h6>Customer Growth Rate (3 month avg)</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/customer_growth_rate_3_month_avg/account-#{current_account.id}-#{account_stats_count}") do %>
+            <% if current_user.account.stats.customer_growth_rate_average.present? %>
+            <p class="main_metric"><%= number_to_percentage(current_user.account.stats.customer_growth_rate_average, precision: 2) %></p>
+            <div id="canvas_customer_growth_rate" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.customer_growth_rate(5.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.customer_growth_rate(4.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.customer_growth_rate(3.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.customer_growth_rate(2.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.customer_growth_rate(1.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.customer_growth_rate, precision: 2) %>]" data-labels="<%= previous_months %>"></div>
+            <% else %>
+            <div class="loading"></div>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <h6>ARPU Growth Rate (3 month avg)</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/arpu_growth_rate/account-#{current_account.id}-#{account_stats_count}") do %>
+            <p class="main_metric"><%= number_to_percentage(current_user.account.stats.arpu_growth_rate_average, precision: 2) %></p>
+            <div id="canvas_arpu_growth_rate" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.arpu_growth_rate(5.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.arpu_growth_rate(4.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.arpu_growth_rate(3.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.arpu_growth_rate(2.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.arpu_growth_rate(1.months), precision: 2) %>,<%= number_with_precision(current_user.account.stats.arpu_growth_rate, precision: 2) %>]" data-labels="<%= previous_months %>"></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Revenue lost to discounts from copuons"><i class="ss-info"></i></span>
+            <h6>Coupon Revenue Loss</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/coupon_rev_loss/account-#{current_account.id}-#{account_stats_count}") do %>
+            <p class="main_metric"><%= number_to_currency(current_user.account.stats.lost_rev_total, precision: 0) if current_user.account.stats.lost_rev_total.present? %></p>
+            <div id="canvas_lost_rev" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.lost_rev(5.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.lost_rev(4.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.lost_rev(3.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.lost_rev(2.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.lost_rev(1.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.lost_rev, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <h6>Downgrades</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/downgrades/account-#{current_account.id}-#{account_stats_count}") do %>
+            <p class="main_metric"><%= current_user.account.stats.downgraded_accounts_total %></p>
+            <div id="canvas_downgraded_accounts" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.downgraded_accounts(5.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.downgraded_accounts(4.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.downgraded_accounts(3.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.downgraded_accounts(2.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.downgraded_accounts(1.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.downgraded_accounts, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <h6>Upgrades</h6>
+          </header>
+          <div class="content">
+            <% cache("stats/upgrades/account-#{current_account.id}-#{account_stats_count}") do %>
+            <p class="main_metric"><%= current_user.account.stats.upgraded_accounts_total %></p>
+            <div id="canvas_upgraded_accounts" class="chart" data-numbers="[<%= number_with_precision(current_user.account.stats.upgraded_accounts(5.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.upgraded_accounts(4.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.upgraded_accounts(3.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.upgraded_accounts(2.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.upgraded_accounts(1.months), precision: 0) %>,<%= number_with_precision(current_user.account.stats.upgraded_accounts, precision: 0) %>]" data-labels="<%= previous_months %>"></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% if @plans.present? %>
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="widget radius">
+          <header>
+            <span class="note">Free plans and those with no revenue are hidden</span>
+            <h6>Plan Breakdown</h6>
+          </header>
+          <div class="content">
+            <table class="responsive">
+              <thead>
+                <tr>
+                  <th width="200">Plan</th>
+                  <th>Price</th>
+                  <th>Customers</th>
+                  <th>LTV</th>
+                  <th>Churn</th>
+                  <th>Gross Revenue</th>
+                  <th>Fees</th>
+                </tr>
+              </thead>
+              <% cache("stats/plans/account-#{current_account.id}-#{account_stats_count}") do %>
+              <tbody>
+                <% @plans.each do |plan| %>
+                <% plan = JSON.parse(plan.data) %>
+                <% if plan['amount'].to_i > 0 and current_user.account.stats.gross_revenue_by_plan(plan['id']) > 0 %>
+                <tr>
+                  <td><%= plan['name'] %> <%#= plan['id'] %></td>
+                  <td><%= number_to_currency(plan['amount'].to_f / 100) %></td>
+                  <!-- <td><%#= current_user.account.stats.active_accounts_plan(1.month, plan['id']) %></td> -->
+                  <td><%= current_account.stats.live_customer_count(plan) %></td>
+                  <td>
+                    <% if current_user.account.stats.ltv_plan_rolling(3, plan['id']) > 0 and current_user.account.stats.churn_rate_plan_rolling(3, plan['id']) > 0 and current_account.stats.live_customer_count(plan) > 10 %>
+                      <%= number_to_currency(current_user.account.stats.ltv_plan_rolling(3, plan['id']), precision: 2) %>
+                    <% else %>
+                      <span class="radius secondary label faded">Not enough data</span>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% if current_user.account.stats.ltv_plan_rolling(3, plan['id']) > 0 and current_user.account.stats.churn_rate_plan_rolling(3, plan['id']) > 0 and current_account.stats.live_customer_count(plan) > 10 %>
+                      <%= number_to_percentage(current_user.account.stats.churn_rate_plan_rolling(3, plan['id']), precision: 2) %>
+                    <% else %>
+                      <span class="radius secondary label faded">Not enough data</span>
+                    <% end %>
+                  </td>
+                  <td><%= number_to_currency(current_user.account.stats.gross_revenue_by_plan(plan['id'])) if current_user.account.stats.gross_revenue_by_plan(plan['id']) > 0 %></td>
+                  <td><%= number_to_currency(current_user.account.stats.fees_by_plan(plan['id'])) if current_user.account.stats.fees_by_plan(plan['id']) > 0 %></td>
+                </tr>
+                <% end %>
+                <% end %>
+              </tbody>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+    <% end %>
+  </div>
+</div>

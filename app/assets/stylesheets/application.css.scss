@@ -1,0 +1,278 @@
+@charset "UTF-8";
+/*
+*= require_self
+*/
+
+@import "compass";
+@import "foundation_and_overrides";
+@import "stripe_buttons";
+@import "fonts";
+@import "morris";
+@import "retina-sprites";
+@import "icons/*.png";
+@include all-icons-sprites;
+
+
+table { width: 100%; }
+
+.top-bar {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}
+.top-bar .name h1 a {
+  @include hide-text;
+  @include sprite-retina('logo');
+  margin-left: 15px;
+}
+.top-bar-section .has-form {
+  padding-top: 9px;
+}
+.company_name {
+  color: white;
+  padding-left: 5px;
+  margin-top: 23px;
+  font-size: .8em;
+}
+small {
+  font-style: italic;
+  opacity: 0.9;
+}
+.page_header {
+  margin-bottom: 1.5em;
+  h1 {
+    margin-bottom: 0;
+  }
+  h3 {
+    margin-top: 0;
+  }
+}
+.faded {
+  opacity: 0.5;
+}
+.widget .chart {
+  height: 75px;
+}
+.numbers {
+  @include clearfix;
+}
+.reminder {
+  @include clearfix;
+  margin-top: 12px;
+  margin-bottom: 30px;
+  .seal {
+    float: left;
+    @include sprite-retina('seal');
+  }
+  .info {
+    margin-top: 10px;
+    margin-left: 175px;
+    font-size: emCalc(15px);
+    font-weight: 300;
+    line-height: 1.7em;
+    b {
+      color: #b49622;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
+.card_number {
+  position: relative;
+}
+.card_listing {
+  position: absolute;
+  right: 0;
+  margin: 7px 8px 0 0;
+}
+.credit-card {
+  @include inline-block;
+  @each $card in amex, discover, mastercard, visa {
+    &.#{$card} {
+      @include sprite-retina($card)
+    }
+  }
+}
+.expiration {
+  margin-top: 8px;
+}
+
+// Make site full-width
+.row.full-width {width: 100%;min-width:100% !important;}
+
+.widget {
+  @include panel;
+  border-color: darken(#f0f5f8, 3%);
+  @include border-radius(4px);
+  @include box-shadow(0 2px 6px rgba(black,0.04));
+  padding: 0;
+  header {
+    padding: 0.5em;
+    text-transform: uppercase;
+    background-color: #242e35;
+    @include border-top-radius(4px);
+    time, .note {
+      float: right;
+      color: rgba(white,0.75);
+      margin-top: 9px;
+      margin-right: 20px;
+      font-size: .6em;
+      font-weight: bold;
+    }
+    h6 {
+      padding: 0.5em;
+      margin: 0;
+      color: white;
+      font-size: .9em;
+    }
+    .has-tip {
+      border-bottom: 0;
+      color: white;
+      position: relative;
+      top: 8px;
+      right: 5px;
+    }
+  }
+  .content {
+    padding: .5em 1.25em;
+  }
+  .main_metric {
+    font-size: 2.6em;
+    margin: 0;
+    font-weight: 800;
+    color: $success-color;
+  }
+  .projections {
+    padding: 8px 12px;
+    text-transform: uppercase;
+    background: $secondary-color;
+    font-size: .7em;
+    @include border-radius(4px);
+    p {
+      margin: 0;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+// PRICING
+// ---------------------------------------------------------
+.pricing_box  {
+  @include pricing-table-container;
+  border-color: darken(#f0f5f8, 3%);
+  @include border-radius(4px);
+  @include box-shadow(0 2px 6px rgba(black,0.04));
+
+  .title {
+    @include pricing-table-title;
+    @include border-top-radius(4px);
+  }
+  .your-price-class  { @include pricing-table-price; }
+  .your-desc-class   { @include pricing-table-description; }
+  .your-bullet-class { @include pricing-table-bullet; }
+  .cta-button    {
+    @include pricing-table-cta;
+    @include border-bottom-radius(4px);
+  }
+}
+.free_blurb {
+  .content {
+    padding: 1.25em 1.45em;
+    font-size: 0.9em;
+    p:last-child {
+      margin: 0;
+    }
+    .button {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// USERS
+// ---------------------------------------------------------
+.user-listing {
+  img {
+    margin-right: 6px;
+    @include border-radius(22px);
+  }
+}
+
+// LOADER
+// ---------------------------------------------------------
+$foreground: #f0f5f8;
+$background: #fff;
+
+div.loading{
+  margin:3em auto;
+  width:50px;
+  height:50px;
+  border-radius:25px;
+  box-sizing:border-box;
+  border:25px solid $foreground;
+  animation: loading 1.8s linear 0 infinite;
+  -webkit-animation: loading 1.8s linear 0 infinite /* Safari and Chrome */
+}
+
+@keyframes loading
+{
+  0% {
+    border: 25px solid $foreground;
+    background:$background;
+  }
+  49.9% {
+    border: 0px solid $foreground;
+    background:$background;
+  }
+  50% {
+    border: 25px solid $background;
+    background:$foreground;
+  }
+  100%{
+    border: 0px solid $background;
+    background:$foreground;
+  }
+}
+
+@-webkit-keyframes loading /* Safari and Chrome */
+{
+  0% {
+    border: 25px solid $foreground;
+    background:$background;
+  }
+  49.9% {
+    border: 0px solid $foreground;
+    background:$background;
+  }
+  50% {
+    border: 25px solid $background;
+    background:$foreground;
+  }
+  100%{
+    border: 0px solid $background;
+    background:$foreground;
+  }
+}
+
+
+// RESPONSIVE TABLES
+@media only screen and (max-width: 767px) {
+
+  table.responsive { margin-bottom: 0; }
+
+  .pinned { position: absolute; left: 0; top: 0; background: #fff; width: 35%; overflow: hidden; overflow-x: scroll; border-right: 1px solid #ccc; border-left: 1px solid #ccc; }
+  .pinned table { border-right: none; border-left: none; width: 100%; }
+  .pinned table th, .pinned table td { white-space: nowrap; }
+  .pinned td:last-child { border-bottom: 0; }
+
+  div.table-wrapper { position: relative; margin-bottom: 20px; overflow: hidden; border-right: 1px solid #ccc; }
+  div.table-wrapper div.scrollable { margin-left: 35%; }
+  div.table-wrapper div.scrollable { overflow: scroll; overflow-y: hidden; }
+
+  table.responsive td, table.responsive th { position: relative; white-space: nowrap; overflow: hidden; }
+  table.responsive th:first-child, table.responsive td:first-child, table.responsive td:first-child, table.responsive.pinned td { display: none; }
+
+
+}

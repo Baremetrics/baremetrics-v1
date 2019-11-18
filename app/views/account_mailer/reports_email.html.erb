@@ -1,0 +1,456 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+  </head>
+  <body style="width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; color: #222222; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; background: #f0f5f8; margin: 0; padding: 0;" bgcolor="#f0f5f8"><style type="text/css">
+@font-face {
+font-family: 'Open Sans'; font-style: normal; font-weight: 300; src: local('Open Sans Light'), local('OpenSans-Light'), url('http://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTYnF5uFdDttMLvmWuJdhhgs.ttf') format('truetype');
+}
+@font-face {
+font-family: 'Open Sans'; font-style: normal; font-weight: 400; src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3aCWcynf_cDxXwCLxiixG1c.ttf') format('truetype');
+}
+@font-face {
+font-family: 'Open Sans'; font-style: normal; font-weight: 700; src: local('Open Sans Bold'), local('OpenSans-Bold'), url('http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzInF5uFdDttMLvmWuJdhhgs.ttf') format('truetype');
+}
+@font-face {
+font-family: 'Open Sans'; font-style: normal; font-weight: 800; src: local('Open Sans Extrabold'), local('OpenSans-Extrabold'), url('http://themes.googleusercontent.com/static/fonts/opensans/v6/EInbV5DfGHOiMmvb1Xr-honF5uFdDttMLvmWuJdhhgs.ttf') format('truetype');
+}
+@font-face {
+font-family: 'Open Sans'; font-style: italic; font-weight: 400; src: local('Open Sans Italic'), local('OpenSans-Italic'), url('http://themes.googleusercontent.com/static/fonts/opensans/v6/xjAJXh38I15wypJXxuGMBp0EAVxt0G0biEntp43Qt6E.ttf') format('truetype');
+}
+@font-face {
+font-family: 'Open Sans'; font-style: italic; font-weight: 700; src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'), url('http://themes.googleusercontent.com/static/fonts/opensans/v6/PRmiXeptR36kaC0GEAetxp_TkvowlIOtbR7ePgFOpF4.ttf') format('truetype');
+}
+a:hover {
+color: #2795b6 !important;
+}
+a:active {
+color: #2795b6 !important;
+}
+a:visited {
+color: #2ba6cb !important;
+}
+h1 a:active {
+color: #2ba6cb !important;
+}
+h2 a:active {
+color: #2ba6cb !important;
+}
+h3 a:active {
+color: #2ba6cb !important;
+}
+h4 a:active {
+color: #2ba6cb !important;
+}
+h5 a:active {
+color: #2ba6cb !important;
+}
+h6 a:active {
+color: #2ba6cb !important;
+}
+h1 a:visited {
+color: #2ba6cb !important;
+}
+h2 a:visited {
+color: #2ba6cb !important;
+}
+h3 a:visited {
+color: #2ba6cb !important;
+}
+h4 a:visited {
+color: #2ba6cb !important;
+}
+h5 a:visited {
+color: #2ba6cb !important;
+}
+h6 a:visited {
+color: #2ba6cb !important;
+}
+table.button:hover td {
+background: #2795b6 !important;
+}
+table.button:visited td {
+background: #2795b6 !important;
+}
+table.button:active td {
+background: #2795b6 !important;
+}
+table.button:hover td a {
+color: #fff !important;
+}
+table.button:visited td a {
+color: #fff !important;
+}
+table.button:active td a {
+color: #fff !important;
+}
+table.button:hover td {
+background: #2795b6 !important;
+}
+table.tiny-button:hover td {
+background: #2795b6 !important;
+}
+table.small-button:hover td {
+background: #2795b6 !important;
+}
+table.medium-button:hover td {
+background: #2795b6 !important;
+}
+table.large-button:hover td {
+background: #2795b6 !important;
+}
+table.button:hover td a {
+color: #ffffff !important;
+}
+table.button:active td a {
+color: #ffffff !important;
+}
+table.button td a:visited {
+color: #ffffff !important;
+}
+table.tiny-button:hover td a {
+color: #ffffff !important;
+}
+table.tiny-button:active td a {
+color: #ffffff !important;
+}
+table.tiny-button td a:visited {
+color: #ffffff !important;
+}
+table.small-button:hover td a {
+color: #ffffff !important;
+}
+table.small-button:active td a {
+color: #ffffff !important;
+}
+table.small-button td a:visited {
+color: #ffffff !important;
+}
+table.medium-button:hover td a {
+color: #ffffff !important;
+}
+table.medium-button:active td a {
+color: #ffffff !important;
+}
+table.medium-button td a:visited {
+color: #ffffff !important;
+}
+table.large-button:hover td a {
+color: #ffffff !important;
+}
+table.large-button:active td a {
+color: #ffffff !important;
+}
+table.large-button td a:visited {
+color: #ffffff !important;
+}
+table.secondary:hover td {
+background: #d0d0d0 !important; color: #555;
+}
+table.secondary:hover td a {
+color: #555 !important;
+}
+table.secondary td a:visited {
+color: #555 !important;
+}
+table.secondary:active td a {
+color: #555 !important;
+}
+table.success:hover td {
+background: #457a1a !important;
+}
+table.alert:hover td {
+background: #970b0e !important;
+}
+.button:hover table td {
+background: #2795b6 !important;
+}
+.tiny-button:hover table td {
+background: #2795b6 !important;
+}
+.small-button:hover table td {
+background: #2795b6 !important;
+}
+.medium-button:hover table td {
+background: #2795b6 !important;
+}
+.large-button:hover table td {
+background: #2795b6 !important;
+}
+.button:hover {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.button:active {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.button:visited {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.tiny-button:hover {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.tiny-button:active {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.tiny-button:visited {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.small-button:hover {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.small-button:active {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.small-button:visited {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.medium-button:hover {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.medium-button:active {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.medium-button:visited {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.large-button:hover {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.large-button:active {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.large-button:visited {
+color: #ffffff !important; font-family: 'Open Sans', Helvetica, Arial, sans-serif; text-decoration: none;
+}
+.secondary:hover table td {
+background: #d0d0d0 !important;
+}
+.success:hover table td {
+background: #457a1a !important;
+}
+.alert:hover table td {
+background: #970b0e !important;
+}
+table.facebook:hover td {
+background: #2d4473 !important;
+}
+table.twitter:hover td {
+background: #0087bb !important;
+}
+table.google-plus:hover td {
+background: #CC0000 !important;
+}
+@media only screen and (max-width: 600px) {
+  table[class="body"] img {
+    width: auto !important; height: auto !important;
+  }
+  table[class="body"] center {
+    min-width: 0 !important;
+  }
+  table[class="body"] .container {
+    width: 95% !important;
+  }
+  table[class="body"] .row {
+    width: 100% !important; display: block !important;
+  }
+  table[class="body"] .wrapper {
+    display: block !important; padding-right: 0 !important;
+  }
+  table[class="body"] .columns {
+    table-layout: fixed !important; float: none !important; width: 100% !important; padding-right: 0px !important; padding-left: 0px !important; display: block !important;
+  }
+  table[class="body"] .column {
+    table-layout: fixed !important; float: none !important; width: 100% !important; padding-right: 0px !important; padding-left: 0px !important; display: block !important;
+  }
+  table[class="body"] .wrapper.first .columns {
+    display: table !important;
+  }
+  table[class="body"] .wrapper.first .column {
+    display: table !important;
+  }
+  table[class="body"] table.columns td {
+    width: 100% !important;
+  }
+  table[class="body"] table.column td {
+    width: 100% !important;
+  }
+  table[class="body"] td.offset-by-one {
+    padding-left: 0 !important;
+  }
+  table[class="body"] td.offset-by-two {
+    padding-left: 0 !important;
+  }
+  table[class="body"] td.offset-by-three {
+    padding-left: 0 !important;
+  }
+  table[class="body"] td.offset-by-four {
+    padding-left: 0 !important;
+  }
+  table[class="body"] td.offset-by-five {
+    padding-left: 0 !important;
+  }
+  table[class="body"] td.offset-by-six {
+    padding-left: 0 !important;
+  }
+  table[class="body"] td.offset-by-seven {
+    padding-left: 0 !important;
+  }
+  table[class="body"] td.offset-by-eight {
+    padding-left: 0 !important;
+  }
+  table[class="body"] td.offset-by-nine {
+    padding-left: 0 !important;
+  }
+  table[class="body"] td.offset-by-ten {
+    padding-left: 0 !important;
+  }
+  table[class="body"] td.offset-by-eleven {
+    padding-left: 0 !important;
+  }
+  table[class="body"] .expander {
+    width: 9999px !important;
+  }
+  table[class="body"] .right-text-pad {
+    padding-left: 10px !important;
+  }
+  table[class="body"] .left-text-pad {
+    padding-right: 10px !important;
+  }
+  table[class="body"] .hide-for-small {
+    display: none !important;
+  }
+  table[class="body"] .show-for-desktop {
+    display: none !important;
+  }
+  table[class="body"] .show-for-small {
+    display: inherit !important;
+  }
+  table[class="body"] .hide-for-desktop {
+    display: inherit !important;
+  }
+  table[class="body"] .right-text-pad {
+    padding-left: 10px !important;
+  }
+  table[class="body"] .left-text-pad {
+    padding-right: 10px !important;
+  }
+}
+</style>
+  <table class="body" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; height: 100%; width: 100%; background: #f0f5f8; padding: 0;" bgcolor="#f0f5f8"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="center" align="center" valign="top" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; padding: 0;">
+        <center style="width: 100%; min-width: 580px;">
+
+          <table class="row header" style="margin-bottom: 20px; border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; background: #ffffff; padding: 0px;" bgcolor="#ffffff"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="center" align="center" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; padding: 0;" valign="top">
+                <center style="width: 100%; min-width: 580px;">
+
+                  <table class="container" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: inherit; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="wrapper last" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; padding: 10px 0px 0px;" align="left" valign="top">
+
+                        <table class="twelve columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="six sub-columns" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; width: 50% !important; padding: 0px 3.448276% 10px 0px;" align="left" valign="top">
+                              <a href="https://www.baremetrics.io" style="color: #2ba6cb; text-decoration: none;"><img src="http://baremetrics.s3.amazonaws.com/logo.png" width="200" height="40" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block; border: none;" align="left" /></a>
+                            </td>
+                            <td class="six sub-columns hide-for-small last" style="text-align: right; vertical-align: middle; word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; width: 50% !important; padding: 0px 0px 10px;" align="right" valign="middle">
+                              <span class="template-label" style="color: #242e35; font-weight: bold; font-size: 12px; text-transform: uppercase;"><%= Time.now.strftime("%A, %b %e, %Y") %></span>
+                            </td>
+
+                          </tr></table></td>
+                    </tr></table></center>
+              </td>
+            </tr></table><table class="container" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: inherit; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0;" align="left" valign="top">
+
+                <table class="row callout" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="wrapper last" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; padding: 10px 0px 20px;" align="left" valign="top">
+
+                      <table class="twelve columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="this_week panel" style="text-align: center; font-size: 32px; font-weight: 300; word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; background: #fff; padding: 30px;" align="center" bgcolor="#fff" valign="top">
+                            You made <b style="color: #6da94a; font-size: 46px; font-weight: 800;"><%= number_to_currency(@account.stats.gross_sales(@range)) %></b> this week!
+                          </td>
+                          <td class="expander" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; padding: 0;" align="left" valign="top"></td>
+                        </tr></table></td>
+                  </tr></table><table class="row" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="wrapper last" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; padding: 0 0px 0px;" align="left" valign="top">
+
+                      <table class="twelve columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0px 0px 0;" align="left" valign="top">
+                            <h2 class="center" style="text-transform: uppercase; font-weight: 300; font-size: 25px; text-align: center; color: #222222; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 1.3; word-break: normal; margin: 0; padding: 0;" align="center">Revenue</h2>
+                          </td>
+                          <td class="expander" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; padding: 0;" align="left" valign="top"></td>
+                        </tr></table></td>
+                  </tr></table><table class="row callout" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="wrapper" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; padding: 10px 20px 20px 0px;" align="left" valign="top">
+                      <table class="four columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 180px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="center panel" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; background: #fff; padding: 15px 0;" align="center" bgcolor="#fff" valign="top">
+                            <center style="width: 100%; min-width: 180px;">
+                              <h5 class="center" style="text-transform: uppercase; font-size: 11px; font-weight: 700; text-align: center; color: #222222; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 1.3; word-break: normal; margin: 0; padding: 0;" align="center">Rev this month</h5>
+                              <p style="text-align: center; color: #1a8cc9; font-weight: 700; font-size: 32px; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 19px; margin: 10px 0; padding: 0;" align="center"><%= number_to_currency(@account.stats.net_revenue(Date.yesterday.beginning_of_month..Date.yesterday)) %></p>
+                            </center>
+                          </td>
+                          <td class="expander" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; padding: 0;" align="left" valign="top"></td>
+                        </tr></table></td>
+                    <td class="wrapper" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; padding: 10px 20px 20px 0px;" align="left" valign="top">
+                      <table class="four columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 180px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="center panel" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; background: #fff; padding: 15px 0;" align="center" bgcolor="#fff" valign="top">
+                            <center style="width: 100%; min-width: 180px;">
+                              <h5 class="center" style="text-transform: uppercase; font-size: 11px; font-weight: 700; text-align: center; color: #222222; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 1.3; word-break: normal; margin: 0; padding: 0;" align="center">Total Rev</h5>
+                              <p style="text-align: center; color: #1a8cc9; font-weight: 700; font-size: 32px; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 19px; margin: 10px 0; padding: 0;" align="center"><%= number_to_currency(@account.stats.total_net_revenue) %></p>
+                            </center>
+                          </td>
+                          <td class="expander" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; padding: 0;" align="left" valign="top"></td>
+                        </tr></table></td>
+                    <td class="wrapper last" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; padding: 10px 0px 20px;" align="left" valign="top">
+                      <table class="four columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 180px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="center panel" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; background: #fff; padding: 15px 0;" align="center" bgcolor="#fff" valign="top">
+                            <center style="width: 100%; min-width: 180px;">
+                              <h5 class="center" style="text-transform: uppercase; font-size: 11px; font-weight: 700; text-align: center; color: #222222; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 1.3; word-break: normal; margin: 0; padding: 0;" align="center">MRR</h5>
+                              <p style="text-align: center; color: #1a8cc9; font-weight: 700; font-size: 32px; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 19px; margin: 10px 0; padding: 0;" align="center"><%= number_to_currency(@account.stats.mrr_average, precision: 0) %></p>
+                            </center>
+                          </td>
+                          <td class="expander" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; padding: 0;" align="left" valign="top"></td>
+                        </tr></table></td>
+                  </tr></table><table class="row" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="wrapper last" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; padding: 0 0px 0px;" align="left" valign="top">
+
+                      <table class="twelve columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0px 0px 0;" align="left" valign="top">
+                            <h2 class="center" style="text-transform: uppercase; font-weight: 300; font-size: 25px; text-align: center; color: #222222; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 1.3; word-break: normal; margin: 0; padding: 0;" align="center">Accounts</h2>
+                          </td>
+                          <td class="expander" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; padding: 0;" align="left" valign="top"></td>
+                        </tr></table></td>
+                  </tr></table><table class="row callout" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="wrapper" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; padding: 10px 20px 20px 0px;" align="left" valign="top">
+                      <table class="three columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 130px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="center panel" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; background: #fff; padding: 15px 0;" align="center" bgcolor="#fff" valign="top">
+                            <center style="width: 100%; min-width: 130px;">
+                              <h5 class="center" style="text-transform: uppercase; font-size: 11px; font-weight: 700; text-align: center; color: #222222; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 1.3; word-break: normal; margin: 0; padding: 0;" align="center">New</h5>
+                              <p style="text-align: center; color: #1a8cc9; font-weight: 700; font-size: 32px; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 19px; margin: 10px 0; padding: 0;" align="center"><%= @account.stats.created_accounts(@range) %></p>
+                            </center>
+                          </td>
+                          <td class="expander" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; padding: 0;" align="left" valign="top"></td>
+                        </tr></table></td>
+                    <td class="wrapper" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; padding: 10px 20px 20px 0px;" align="left" valign="top">
+                      <table class="three columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 130px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="center panel" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; background: #fff; padding: 15px 0;" align="center" bgcolor="#fff" valign="top">
+                            <center style="width: 100%; min-width: 130px;">
+                              <h5 class="center" style="text-transform: uppercase; font-size: 11px; font-weight: 700; text-align: center; color: #222222; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 1.3; word-break: normal; margin: 0; padding: 0;" align="center">Cancelled</h5>
+                              <p style="text-align: center; color: #1a8cc9; font-weight: 700; font-size: 32px; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 19px; margin: 10px 0; padding: 0;" align="center"><%= @account.stats.cancelled_accounts(@range) %></p>
+                            </center>
+                          </td>
+                          <td class="expander" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; padding: 0;" align="left" valign="top"></td>
+                        </tr></table></td>
+                    <td class="wrapper" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; padding: 10px 20px 20px 0px;" align="left" valign="top">
+                      <table class="three columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 130px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="center panel" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; background: #fff; padding: 15px 0;" align="center" bgcolor="#fff" valign="top">
+                            <center style="width: 100%; min-width: 130px;">
+                              <h5 class="center" style="text-transform: uppercase; font-size: 11px; font-weight: 700; text-align: center; color: #222222; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 1.3; word-break: normal; margin: 0; padding: 0;" align="center">Upgrades</h5>
+                              <p style="text-align: center; color: #1a8cc9; font-weight: 700; font-size: 32px; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 19px; margin: 10px 0; padding: 0;" align="center"><%= @account.stats.upgraded_accounts(@range) %></p>
+                            </center>
+                          </td>
+                          <td class="expander" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; padding: 0;" align="left" valign="top"></td>
+                        </tr></table></td>
+                    <td class="wrapper last" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; padding: 10px 0px 20px;" align="left" valign="top">
+                      <table class="three columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 130px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="center panel" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; background: #fff; padding: 15px 0;" align="center" bgcolor="#fff" valign="top">
+                            <center style="width: 100%; min-width: 130px;">
+                              <h5 class="center" style="text-transform: uppercase; font-size: 11px; font-weight: 700; text-align: center; color: #222222; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 1.3; word-break: normal; margin: 0; padding: 0;" align="center">Downgrades</h5>
+                              <p style="text-align: center; color: #1a8cc9; font-weight: 700; font-size: 32px; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; line-height: 19px; margin: 10px 0; padding: 0;" align="center"><%= @account.stats.downgraded_accounts(@range) %></p>
+                            </center>
+                          </td>
+                          <td class="expander" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; padding: 0;" align="left" valign="top"></td>
+                        </tr></table></td>
+                  </tr></table><table class="row" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="wrapper last" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; padding: 0 0px 0px;" align="left" valign="top">
+
+                      <table class="twelve columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; padding: 0px 0px 0;" align="left" valign="top">
+                            <br /><p style="font-size: 12px; font-style: italic; color: #222222; display: block; font-family: 'Open Sans', 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; margin: 0; padding: 0 0 10px;" align="left">This weekly report is a very new feature and still a little rough around the edges. <b>Just reply to this email with any feedback you have...it's very much welcome.</b> -- Josh Pigford, Founder of Baremetrics</p>
+                          </td>
+                          <td class="expander" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; padding: 0;" align="left" valign="top"></td>
+                        </tr></table></td>
+                  </tr></table><!-- container end below --></td>
+            </tr></table></center>
+      </td>
+    </tr></table></body>
+</html>

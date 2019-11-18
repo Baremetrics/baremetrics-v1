@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  	<title><%= content_for?(:title) ? "#{yield(:title)} - Baremetrics" : "Baremetrics" %></title>
+
+    <script type="text/javascript" src="//use.typekit.net/ser3inc.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+  	<%= stylesheet_link_tag    "application" %>
+  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= javascript_include_tag "vendor/zepto" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+    <%= render "shared/segment" %>
+  </head>
+
+  <body>
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">Baremetrics</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      </ul>
+      <section class="top-bar-section">
+        <% if controller.action_name == 'demo' %>
+        <ul class="left">
+          <li class="company_name">for <b>Sample Company, Inc.</b></li>
+        </ul>
+        <% elsif current_user and current_user.account.company.present? %>
+        <ul class="left">
+          <li class="company_name">for <b><%= current_user.account.company %></b></li>
+        </ul>
+        <% end %>
+        <ul class="right">
+          <li class="divider"></li>
+          <% if current_user %>
+          <li><%= link_to 'Dashboard', dashboard_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to 'Settings', settings_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to 'Log out', logout_path %></li>
+          <% else %>
+          <li><%= link_to "Home", root_path %></li>
+          <li class="divider"></li>
+          <li><%= link_to "Sign Up & Pricing", root_path(anchor:'pricing') %></li>
+          <li class="divider"></li>
+          <li class="has-form"><%= link_to "Log in", login_path, class: 'button success radius' %></li>
+          <% end %>
+        </ul>
+      </section>
+    </nav>
+
+    <%= yield %>
+
+    <%= render "shared/google_conversion" if flash[:signup_success] == true and Rails.env == 'production' %>
+  </body>
+</html>

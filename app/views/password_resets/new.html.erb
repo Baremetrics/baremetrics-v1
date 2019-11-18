@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="small-6 small-centered columns">
+    <h2>Reset your password</h2>
+      <% if alert %>
+      <div class="row">
+        <div class="large-12 columns">
+          <div data-alert class="alert-box alert radius">
+            <%= alert %>
+            <a href="#" class="close">&times;</a>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <%= form_tag password_resets_path, :method => :post do %>
+        <div class="row">
+          <div class="large-12 columns">
+          <%= label_tag :email %>
+          <%= email_field_tag :email, '', :class => 'has_label' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <button class="button success radius">Reset Your Password</button>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="large-6 large-centered columns">
+    <h2>Edit <%= @user.name %></h2>
+    <%= form_for @user do |f| %>
+
+    <%= render :partial => "form", :locals => { :question => @user, :f => f } %>
+
+      <div class="row">
+        <div class="large-12 columns">
+          <button class="button success radius">Update User</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

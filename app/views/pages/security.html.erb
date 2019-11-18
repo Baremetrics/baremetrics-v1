@@ -1,0 +1,34 @@
+<% content_for :title, "Security" %>
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Security</h1>
+
+    <p>Having been a business owner myself for 10+ years, I know how important security of your information is. Below is an outline of how we take your information security seriously. If you have any questions about these things, don't hesitate to get in touch.<br>
+    - <b>Josh Pigford, Founder</b>
+    </p>
+
+    <h3>File Systems and Communication</h3>
+
+    <p>All access to the Baremetrics website is restricted to HTTPS encrypted connections. All data retrieval from Stripe is done with your unique access token over a secure connection with Stripe's API.</p>
+
+    <p>User passwords are secured with BCrypt. They are never stored in the database in plaintext and are not readable by staff. Passwords do provide access to the Baremetrics website, however, and it is the responsibility of the end user to protect his password with care.</p>
+
+    <p>Integration with your Stripe account is done via API keys.</p>
+
+    <h3>Employee Access</h3>
+
+    <p>No Baremetrics staff will access your business metrics unless required for support reasons. In cases where staff must access business metrics in order to perform support, we will get your explicit consent each time, except when responding to a critical security issue or suspected abuse.
+
+    <p>When working a support issue we do our best to respect your privacy as much as possible, we only access the minimum data needed to resolve your issue.</p>
+
+    <p>Finally, it's worth noting that Baremetrics' staff is quite small, limiting the number of individuals who would provide you support.</p>
+
+    <h3>Credit Card Safety</h3>
+
+    <p>When you purchase a paid Baremetrics subscription, your credit card data is not transmitted through nor stored on our systems. Instead, we depend on <a href="http://stripe.com">Stripe</a>, a company dedicated to this task (and whom we'll go ahead and make the assumption you're familiar with...for obvious reasons). Stripe is certified to PCI Service Provider Level 1, the most stringent level of certification available. <a href="https://stripe.com/help/security">Stripe's security information</a> is available online.</p>
+
+    <h3>Contact Us</h3>
+
+    <p>Have a question or concern? Please email us at <%= mail_to "support@baremetrics.io" %>.</p>
+  </div>
+</div>

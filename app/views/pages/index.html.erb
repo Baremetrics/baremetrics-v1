@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Baremetrics - Stripe Analytics" %></title>
+
+    <meta name="description" content="Baremetrics provides easy, one-click Stripe analytics and metrics for your business.">
+
+    <script type="text/javascript" src="//use.typekit.net/ser3inc.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag    "marketing" %>
+    <%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= javascript_include_tag "vendor/zepto" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+    <%= render "shared/segment" %>
+  </head>
+
+  <body class="marketing">
+    <section class="top_bar">
+      <div class="row">
+        <div class="large-12 columns">
+          <div class="logo left">Baremetrics</div>
+          <nav class="right">
+            <ul class="inline-list">
+              <li><a href="#metrics" title="Metrics">Metrics</a></li>
+              <li><a href="/demo" title="Metrics" target="_blank">Demo</a></li>
+              <li><a href="#testimonials" title="Testimonials">Testimonials</a></li>
+              <li><a href="#pricing" title="Pricing & Signup">Pricing & Signup</a></li>
+              <li><a href="/login" title="Log in">Log in</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <section class="callout">
+      <div class="row">
+        <div class="large-12 columns text-center">
+          <h1>SaaS Analytics for <span>Stripe</span></h1>
+          <h2><b>One click</b> and you get <b>dozens of valuable metrics</b> from your Stripe account</h2>
+          <%= image_tag 'marketing/img-screenshot.png' %>
+        </div>
+      </div>
+    </section>
+
+    <section class="one_thing" id="one_thing">
+      <div class="row">
+        <div class="large-12 columns text-center">
+          <h3>We’re not kidding about the “one click” thing</h3>
+          <p><%= link_to "Sign up now <span>See how easy it really is</span>".html_safe, '#pricing', class: 'button success radius large' %></p>
+          <h4>Log in, connect your Stripe account and BOOM! Analytics.<br> <b>Clear, useful, actionable metrics.</b> You’re welcome.</h4>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics" id="metrics">
+      <div class="row">
+        <div class="large-10 small-12 large-centered columns text-center">
+          <h3>Metrics you can act on</h3>
+          <h4>Juicy bits we give you right out of the box with <b>zero configuration</b></h4>
+          <div class="row text-left">
+            <ul class="large-4 small-12 columns">
+              <li>Gross Revenue</li>
+              <li>Net Revenue</li>
+              <li>Total Fees</li>
+              <li>Active Accounts</li>
+              <li>Lifetime Value</li>
+              <li>Churn</li>
+              <li>Average Daily Revenue</li>
+              <li>Cancelled Accounts</li>
+            </ul>
+            <ul class="large-4 small-12 columns">
+              <li>Annual Run Rate</li>
+              <li>Refunds</li>
+              <li>Monthly Reurring Revenue</li>
+              <li>Average Revenue Per User</li>
+              <li>Revenue Growth Rate</li>
+              <li>Customer Growth Rate</li>
+              <li>ARPU Growth Rate</li>
+              <li>Revenue Lost to Coupons</li>
+            </ul>
+            <ul class="large-4 small-12 columns">
+              <li>Downgrades</li>
+              <li>Upgrades</li>
+              <li>Per-plan Customer Count</li>
+              <li>Per-plan LTV</li>
+              <li>Per-plan Churn</li>
+              <li>Per-plan Gross Revenue</li>
+              <li>Per-plan Fees</li>
+              <li><i>...and more on the way!</i></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+      <div class="row">
+        <div class="large-10 small-12 large-centered columns text-center">
+          <h3>Happy Customers</h3>
+          <h4>Here's what a few of our happy customers have to say about us.</h4>
+          <div class="row text-left">
+            <div class="large-2 columns">
+              <%= image_tag "marketing/img-testimonial-max.jpg", class: 'avatar' %>
+            </div>
+            <div class="large-10 columns">
+              <p>In just one week, Baremetrics helped us <b>grow MRR by 15%</b> through simple insights into our pricing plans. It's becoming our <b>#1 tool for optimizing our SaaS business</b>.</p>
+              <p class="byline">&mdash; Max Lynch <%= link_to image_tag("marketing/img-logo-drifty.png"), "http://drifty.com" %></p>
+            </div>
+          </div>
+          <hr>
+          <div class="row text-left">
+            <div class="large-2 push-10 columns">
+              <%= image_tag "marketing/img-testimonial-ian.jpg", class: 'avatar' %>
+            </div>
+            <div class="large-10 pull-2 columns">
+              <p>Before I found Baremetrics we were about to spend thousands of dollars in development time figuring out metrics formulas and building reports. For a few dollars a month and 5 seconds of time <b>Baremetrics gave us the same reports with no work at all</b>.</p>
+              <p class="byline text-right">&mdash; Ian Landsman <%= link_to image_tag("marketing/img-logo-snappy.png"), "http://www.besnappy.com" %> </p>
+            </div>
+          </div>
+          <hr>
+          <div class="row text-left">
+            <div class="large-2 columns">
+              <%= image_tag "marketing/img-testimonial-alex.jpg", class: 'avatar' %>
+            </div>
+            <div class="large-10 columns">
+              <p>"One click" setup that actually delivers. Literally one click, and boom, the business stats that I've been fighting to figure out on my own were there on my screen. <b>Worth every penny.</b></p>
+              <p class="byline">&mdash; Alex Hillman <%= link_to image_tag("marketing/img-logo-indy-hall.png"), "http://www.indyhall.org" %></p>
+            </div>
+          </div>
+          <hr>
+          <div class="row text-left">
+            <div class="large-2 push-10 columns">
+              <%= image_tag "marketing/img-testimonial-allan.jpg", class: 'avatar' %>
+            </div>
+            <div class="large-10 pull-2 columns">
+              <p>Click, click, click, then BOOM now you see churn, lifetime customer value and dozens of other <b>stats you need to run your SaaS business</b>.</p>
+              <p class="byline text-right">&mdash; Allan Branch <%= link_to image_tag("marketing/img-logo-lessaccounting.png"), "https://lessaccounting.com" %> </p>
+            </div>
+          </div>
+          <hr>
+          <div class="row text-left">
+            <div class="large-2 columns">
+              <%= image_tag "marketing/img-testimonial-paul.jpg", class: 'avatar' %>
+            </div>
+            <div class="large-10 columns">
+              <p>We had been generating all these numbers by hand, once a month. Baremetrics <b>saves us hours</b>, and means we can have the numbers any time we need them.</p>
+              <p class="byline">&mdash; Paul Biggar <%= link_to image_tag("marketing/img-logo-circleci.png"), "https://circleci.com" %> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div class="row">
+        <div class="large-12 columns large-centered">
+          <div class="row">
+            <div class="header">
+              <h3>Pricing & Signup</h3>
+              <h4>Risk free, <b>60-day money back guarantee!</b></h4>
+            </div>
+            <div class="large-3 columns">
+              <ul class="pricing-table pricing_box">
+                <li class="title">Hobby</li>
+                <li class="price"><b>$29</b>/mo</li>
+                <li class="bullet-item"><b>50 - 250</b> <span data-tooltip class="has-tip tip-top" title="Current Monthly Paying Customers">Paying Customers</span></li>
+                <li class="bullet-item"><b>1</b> Team Member</li>
+                <li class="bullet-item"><b>Email</b> Support</li>
+                <li class="bullet-item">-</li>
+                <li class="bullet-item">-</li>
+                <li class="cta-button"><%= link_to 'Get Started', signup_path(plan: 'hobby'), class: 'button alert radius' %></li>
+              </ul>
+            </div>
+            <div class="large-3 columns">
+              <ul class="pricing-table pricing_box">
+                <li class="title">Startup</li>
+                <li class="price"><b>$79</b>/mo</li>
+                <li class="bullet-item"><b>1,000</b> <span data-tooltip class="has-tip tip-top" title="Current Monthly Paying Customers">Paying Customers</span></li>
+                <li class="bullet-item"><b>3</b> Team Members</li>
+                <li class="bullet-item"><b>Email</b> Support</li>
+                <li class="bullet-item">Weekly Email <b>Reports</b></li>
+                <li class="bullet-item">-</li>
+                <li class="cta-button"><%= link_to 'Get Started', signup_path(plan: 'startup'), class: 'button alert radius' %></li>
+              </ul>
+            </div>
+            <div class="large-3 columns">
+              <ul class="pricing-table pricing_box">
+                <li class="title">Professional</li>
+                <li class="price"><b>$149</b>/mo</li>
+                <li class="bullet-item"><b>2,000</b> <span data-tooltip class="has-tip tip-top" title="Current Monthly Paying Customers">Paying Customers</span></li>
+                <li class="bullet-item"><b>5</b> Team Members</li>
+                <li class="bullet-item"><b>Email & Phone</b> Support</li>
+                <li class="bullet-item">Weekly Email <b>Reports</b></li>
+                <li class="bullet-item">-</li>
+                <li class="cta-button"><%= link_to 'Get Started', signup_path(plan: 'professional'), class: 'button alert radius' %></li>
+              </ul>
+            </div>
+            <div class="large-3 columns">
+              <ul class="pricing-table pricing_box">
+                <li class="title">Business</li>
+                <li class="price"><b>$249</b>/mo</li>
+                <li class="bullet-item"><b>4,000</b> <span data-tooltip class="has-tip tip-top" title="Current Monthly Paying Customers">Paying Customers</span></li>
+                <li class="bullet-item"><b>10</b> Team Members</li>
+                <li class="bullet-item"><b>Email & Phone</b> Support</li>
+                <li class="bullet-item">Weekly Email <b>Reports</b></li>
+                <li class="bullet-item"><b>Compare</b> Businesses<br><small>Coming very soon!</small></li>
+                <li class="cta-button"><%= link_to 'Get Started', signup_path(plan: 'business'), class: 'button alert radius' %></li>
+              </ul>
+            </div>
+            <!-- <div class="large-3 columns">
+              <ul class="pricing-table pricing_box">
+                <li class="title">Enterprise</li>
+                <li class="price">Email for Pricing</li>
+                <li class="bullet-item"><b>Unlimited</b> <span data-tooltip class="has-tip tip-top" title="Current Monthly Paying Customers">Paying Customers</span></li>
+                <li class="bullet-item"><b>Unlimited</b> Team Members</li>
+                <li class="bullet-item"><b>Email & Phone</b> Support</li>
+                <li class="bullet-item">Email <b>Reports</b><br><small>Coming very soon!</small></li>
+                <li class="bullet-item"><b>Compare</b> Businesses<br><small>Coming very soon!</small></li>
+                <li class="cta-button"><%= mail_to 'hello@baremetrics.io', 'Get In Touch', class: 'button alert radius' %></li>
+              </ul>
+            </div> -->
+          </div>
+          <div class="row">
+            <div class="large-8 small-12 large-centered text-center columns enterprise_note">
+              <p>Need a larger plan, more team members or a higher level of support? <b><%= mail_to "hello@baremetrics.io", "Send us an email" %></b>.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <div class="widget free_blurb">
+                <div class="content text-center">
+                  <h4>Less than 50 paying customers?</h4>
+                  <p>Realistically, the kind of data we provide isn't that useful for less than 50 monthly recurring paying customers. So, instead of charging you for data that isn't all that useful, <b>we're working on a FREE plan</b> with basic metrics and monthly reports just for folks like you who are just getting their business off the ground! Stay tuned. This will be available very soon.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="row">
+        <div class="large-12 columns text-center">
+          <p>&copy; <%= Time.now.year %> Sabotage. <%= link_to "Security", security_path %>. <%= link_to "Privacy", privacy_path %>. <%= link_to "Terms", terms_path %>. Have questions? <b><%= mail_to "hello@baremetrics.io", "Send us an email." %></b> <a href="https://twitter.com/Baremetrics" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @Baremetrics</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></p>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>

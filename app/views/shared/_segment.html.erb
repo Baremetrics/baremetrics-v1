@@ -1,0 +1,26 @@
+<script type="text/javascript">
+  var analytics=analytics||[];(function(){var e=["identify","track","trackLink","trackForm","trackClick","trackSubmit","page","pageview","ab","alias","ready","group"],t=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var n=0;n<e.length;n++)analytics[e[n]]=t(e[n])})(),analytics.load=function(e){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/"+e+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)};
+  analytics.load("<%= ENV["SEGMENT_API"] %>");
+</script>
+
+<% if current_account and current_account.plan %>
+<script>
+analytics.identify(<%= current_account.id %>, {
+  created          : <%= current_account.created_at.to_i %>,
+  email            : "<%= current_account.admin_user.email %>",
+  firstName        : "<%= current_account.admin_user.first_name %>",
+  lastName         : "<%= current_account.admin_user.last_name %>",
+  name             : "<%= current_account.admin_user.name %>",
+  company          : "<%= current_account.company %>",
+  subscriptionPlan : "<%= current_account.plan.title %>",
+  planPrice        : <%= current_account.plan.price %>,
+  featureUsers     : <%= current_account.plan.feature_users %>,
+  featureEmailReports : <%= current_account.plan.feature_email_reports %>,
+  featureCompareBiz : <%= current_account.plan.feature_compare_biz %>,
+  userCount        : <%= current_account.users.count %>,
+  payingCustomers  : <%= current_account.stats.active_accounts(1.month) %>,
+  grossRevenue     : <%= number_with_precision(current_account.stats.total_gross_revenue, precision: 0) if current_account.stats.total_gross_revenue > 0 %>,
+  annualRunRate    : <%= number_with_precision(current_account.stats.avg_daily_billed * 365, precision: 0) if current_account.stats.avg_daily_billed.present? %>
+  });
+</script>
+<% end %>

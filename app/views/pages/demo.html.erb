@@ -1,0 +1,343 @@
+<% content_for :title, "Demo" %>
+<div class="row full-width">
+  <div class="large-12 columns">
+    <div class="row">
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Total sales (before refunds & fees)"><i class="ss-info"></i></span>
+            <h6>Total Volume</h6>
+          </header>
+          <div class="content">
+            <p class="main_metric">$55,803.00</p>
+            <div id="canvas_gross_rev" class="chart" data-numbers="[3136,3715,4186,3400,5831,2031]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Total Volume - Refunds - Fees"><i class="ss-info"></i></span>
+            <h6>Net Revenue</h6>
+          </header>
+          <div class="content">
+              <p class="main_metric">$51,246.59</p>
+              <div id="canvas_net_rev" class="chart" data-numbers="[2991,3209,3609,3103,5633,1955]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="All fees collected by Stripe"><i class="ss-info"></i></span>
+            <h6>Total Fees</h6>
+          </header>
+          <div class="content">
+              <p class="main_metric">$2,129.23</p>
+              <div id="canvas_fees" class="chart" data-numbers="[121,140,152,126,198,76]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Accounts charged each month"><i class="ss-info"></i></span>
+            <h6>Active Accounts</h6>
+          </header>
+          <div class="content">
+              <div class="numbers">
+                <p class="main_metric left">95</p>
+                <div class="projections right">
+                  <p><b>Projections</b></p>
+                  <ul>
+                    <li>Month: <b>92</b></li>
+                    <li>3 Month: <b>86</b></li>
+                  </ul>
+                </div>
+              </div>
+              <div id="canvas_active_accounts" class="chart" data-numbers="[98,106,102,89,95,56]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="(Average daily billed amount ÷ # of Active accounts x 30 days) x (100 ÷ Churn Rate)"><i class="ss-info"></i></span>
+            <time></time>
+            <h6>Lifetime Value</h6>
+          </header>
+          <div class="content">
+              <p class="main_metric">$313</p>
+              <div id="canvas_ltv" class="chart" data-numbers="[241,219,419,283,389,389]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Cancelled Accounts / Active Accounts * 100"><i class="ss-info"></i></span>
+            <h6>Churn</h6>
+          </header>
+          <div class="content">
+              <p class="main_metric">13.25%</p>
+              <div id="canvas_churn" class="chart" data-numbers="[13.27,16.04,9.80,13.48,15.79,15.79]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Monthly revenue / # of days in month"><i class="ss-info"></i></span>
+            <h6>Average Daily Amount Billed</h6>
+          </header>
+          <div class="content">
+            <p class="main_metric">$188</p>
+            <div id="canvas_avg_daily_amount" class="chart" data-numbers="[105,120,135,113,188,81]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Accounts that cancelled their subscription or downgraded to a free plan"><i class="ss-info"></i></span>
+            <h6>Cancelled Accounts</h6>
+          </header>
+          <div class="content">
+              <p class="main_metric">263</p>
+              <div id="canvas_cancelled_accounts" class="chart" data-numbers="[13,17,10,12,15,4]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Average daily billed amount x 365 days"><i class="ss-info"></i></span>
+            <time></time>
+            <h6>Annual Run Rate</h6>
+          </header>
+          <div class="content">
+            <p class="main_metric">$68,657</p>
+            <div id="canvas_run_rate" class="chart" data-numbers="[38153,43745,49290,41365,68657,29645]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <time></time>
+            <h6>Refunds</h6>
+          </header>
+          <div class="content">
+            <p class="main_metric">$2,427</p>
+            <div id="canvas_refunds" class="chart" data-numbers="[24,367,426,172,0,0]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <time></time>
+            <h6>Monthly Recurring Revenue (3 Month Avg)</h6>
+          </header>
+          <div class="content">
+            <div class="numbers">
+              <p class="main_metric left">$4,473</p>
+              <div class="projections right">
+                <p><b>Projections</b></p>
+                <ul>
+                  <li>Month: <b>$5,448</b></li>
+                  <li>3 Month: <b>$8,081</b></li>
+                </ul>
+              </div>
+            </div>
+            <div id="canvas_mrr" class="chart" data-numbers="[3136,3715,4186,3400,5831,2031]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="MRR / Active Accounts"><i class="ss-info"></i></span>
+            <h6>Average Revenue Per User</h6>
+          </header>
+          <div class="content">
+            <div class="numbers">
+              <p class="main_metric left">$36</p>
+              <div class="projections right">
+                <p><b>Projections</b></p>
+                <ul>
+                  <li>Month: <b>$45</b></li>
+                  <li>3 Month: <b>$68</b></li>
+                </ul>
+              </div>
+            </div>
+            <div id="canvas_arpu" class="chart" data-numbers="[32,35,41,38,61,36]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <h6>Revenue Growth Rate (3 month avg)</h6>
+          </header>
+          <div class="content">
+            <p class="main_metric">21.80%</p>
+            <div id="canvas_revenue_growth_rate" class="chart" data-numbers="[-19.96,18.48,12.68,-18.78,71.50,-65.18]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <h6>Customer Growth Rate (3 month avg)</h6>
+          </header>
+          <div class="content">
+            <p class="main_metric">-3.26%</p>
+            <div id="canvas_customer_growth_rate" class="chart" data-numbers="[-9.26,8.16,-3.77,-12.75,6.74,-41.05]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <h6>ARPU Growth Rate (3 month avg)</h6>
+          </header>
+          <div class="content">
+            <p class="main_metric">23.62%</p>
+            <div id="canvas_arpu_growth_rate" class="chart" data-numbers="[-11.80,9.53,17.10,-6.92,60.67,-40.92]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <span data-tooltip class="has-tip right" title="Revenue lost to discounts from copuons"><i class="ss-info"></i></span>
+            <h6>Coupon Revenue Loss</h6>
+          </header>
+          <div class="content">
+            <p class="main_metric">$338</p>
+            <div id="canvas_lost_rev" class="chart" data-numbers="[12,12,12,14,12,0]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <h6>Downgrades</h6>
+          </header>
+          <div class="content">
+            <p class="main_metric">118</p>
+            <div id="canvas_downgraded_accounts" class="chart" data-numbers="[0,1,1,5,1,0]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+      <div class="small-12 large-4 columns">
+        <div class="widget radius">
+          <header>
+            <h6>Upgrades</h6>
+          </header>
+          <div class="content">
+            <p class="main_metric">251</p>
+            <div id="canvas_upgraded_accounts" class="chart" data-numbers="[3,6,3,6,5,2]" data-labels="[&quot;2013-06-01&quot;, &quot;2013-07-01&quot;, &quot;2013-08-01&quot;, &quot;2013-09-01&quot;, &quot;2013-10-01&quot;, &quot;2013-11-01&quot;]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="widget radius">
+          <header>
+            <span class="note">Free plans and those with no revenue are hidden</span>
+            <h6>Plan Breakdown</h6>
+          </header>
+          <div class="content">
+            <table class="responsive">
+              <thead>
+                <tr>
+                  <th width="200">Plan</th>
+                  <th>Price</th>
+                  <th>Customers</th>
+                  <th>LTV</th>
+                  <th>Churn</th>
+                  <th>Gross Revenue</th>
+                  <th>Fees</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Pro</td>
+                  <td>$49.00</td>
+                  <!-- <td></td> -->
+                  <td>26</td>
+                  <td>
+                      $277.21
+                  </td>
+                  <td>
+                      24.43%
+                  </td>
+                  <td>$4,885.68</td>
+                  <td>$171.59</td>
+                </tr>
+                <tr>
+                  <td>Starter </td>
+                  <td>$12.00</td>
+                  <!-- <td></td> -->
+                  <td>20</td>
+                  <td>
+                      $133.55
+                  </td>
+                  <td>
+                      23.28%
+                  </td>
+                  <td>$2,032.94</td>
+                  <td>$84.79</td>
+                </tr>
+                <tr>
+                  <td>Premium </td>
+                  <td>$24.00</td>
+                  <!-- <td></td> -->
+                  <td>18</td>
+                  <td>
+                      $929.22
+                  </td>
+                  <td>
+                      14.67%
+                  </td>
+                  <td>$5,419.20</td>
+                  <td>$225.20</td>
+                </tr>
+
+                <tr>
+                  <td>White Label </td>
+                  <td>$99.00</td>
+                  <!-- <td></td> -->
+                  <td>25</td>
+                  <td>
+                      $1,342.71
+                  </td>
+                  <td>
+                      9.16%
+                  </td>
+                  <td>$13,737.34</td>
+                  <td>$574.37</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

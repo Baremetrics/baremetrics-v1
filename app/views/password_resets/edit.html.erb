@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="small-4 small-centered columns">
+    <h2>Reset your password</h2>
+      <% if alert %>
+      <div class="row">
+        <div class="large-12 columns">
+          <div data-alert class="alert-box alert radius">
+            <%= alert %>
+            <a href="#" class="close">&times;</a>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <%= form_for @user, :url => password_reset_path(params[:id]), :html => {:method => :put} do |f| %>
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <button class="button success radius">Update your password</button>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
