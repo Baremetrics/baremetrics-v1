@@ -76,6 +76,7 @@ GEM
       sass (~> 3.1)
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
+    concurrent-ruby (1.1.5)
     connection_pool (1.1.0)
     dalli (2.6.4)
     debug_inspector (0.0.2)
@@ -90,7 +91,8 @@ GEM
     honeybadger (1.8.1)
       json
     httpauth (0.2.0)
-    i18n (0.6.5)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
     journey (1.0.4)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
