@@ -9,4 +9,4 @@ From a code-quality standpoint, this stuff is terrible. 🙃 But the reality is,
 
 If you're an engineer trying figure out what to build or how to build it, I encourage you to just ship _something_. Don't get caught up in having "perfect" code. Just get your product out there and start getting real feedback from real customers.
 
-_Hat tip to Sunil @ Gumroad for [the idea to release this](https://twitter.com/Shpigford/status/1196453901102452736)!_
+_Hat tip to Sahil Lavingia @ Gumroad for [the idea to release this](https://twitter.com/Shpigford/status/1196453901102452736)!_
